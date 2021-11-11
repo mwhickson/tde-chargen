@@ -231,6 +231,7 @@ const ExperienceLevels = {
 }
 
 const Attributes = {
+    Any:  new Attribute("Any", ""),
     Agility: new Attribute("Agility", "AGI"),
     Charisma: new Attribute("Charisma", "CHA"),
     Constitution: new Attribute("Constitution", "CON"),
@@ -246,25 +247,113 @@ const Races = {
         new Reference(Publications.CoreRules, "page 94"), 
         "Dwarf", 
         61, 
-        null
+        {
+            LifePoints: new BaseValue("Life Point Base Value", 8),
+            Spirit: new BaseValue("Spirit Base Value", -4),
+            Toughness: new BaseValue("Toughness Base Value", -4),
+            Movement: new BaseValue("Movement Base Value", 6),
+        },
+        [
+            new AttributeAdjustment(Attributes.Constitution, 1),
+            new AttributeAdjustment(Attributes.Strength, 1),
+
+            // TODO: *or*
+            new AttributeAdjustment(Attributes.Charisma, -2),
+            new AttributeAdjustment(Attributes.Agility, -2)
+        ],
+        null,
+        null,
+        [
+            new Culture(new Reference(Publication.CoreRules, ""), "Diamond Dwarf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Forge Dwarf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Hill Dwarf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Ore Dwarf", null)
+        ],
+        null // TODO: 
     ),
     Elf: new Race(
         new Reference(Publications.CoreRules, "page 91"), 
         "Elf", 
         18, 
-        null
+        {
+            LifePoints: new BaseValue("Life Point Base Value", 2),
+            Spirit: new BaseValue("Spirit Base Value", -4),
+            Toughness: new BaseValue("Toughness Base Value", -6),
+            Movement: new BaseValue("Movement Base Value", 8),
+        },
+        [
+            new AttributeAdjustment(Attributes.Intuition, 1),
+            new AttributeAdjustment(Attributes.Agility, 1),
+
+            // TODO: *or*
+            new AttributeAdjustment(Attributes.Sagacity, -2),
+            new AttributeAdjustment(Attributes.Strength, -2)
+        ],
+        null,
+        null,
+        [
+            new Culture(new Reference(Publication.CoreRules, ""), "Firnelf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Glade Elf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Wood Elf", null)
+        ],
+        null // TODO: 
     ),
     HalfElf: new Race(
         new Reference(Publications.CoreRules, "page 92"), 
-        "HalfElf", 
+        "Half Elf", 
         0, 
-        null
+        {
+            LifePoints: new BaseValue("Life Point Base Value", 5),
+            Spirit: new BaseValue("Spirit Base Value", -4),
+            Toughness: new BaseValue("Toughness Base Value", -6),
+            Movement: new BaseValue("Movement Base Value", 8),
+        },
+        [
+            new AttributeAdjustment(Attributes.Any, 1)
+        ],
+        null,
+        null,
+        [
+            new Culture(new Reference(Publication.CoreRules, ""), "Andergastan", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Bornlander", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Firnelf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Glade Elf", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Horasian", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Middenrealmer", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Nivese", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Northern-Aventurian", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Nostrian", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Svelter", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Thorwaler", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Wood Elf", null)
+        ],
+        null // TODO: 
     ),
     Human: new Race(
         new Reference(Publications.CoreRules, "page 89"), 
         "Human", 
         0, 
-        null
+        {
+            LifePoints: new BaseValue("Life Point Base Value", 5),
+            Spirit: new BaseValue("Spirit Base Value", -5),
+            Toughness: new BaseValue("Toughness Base Value", -5),
+            Movement: new BaseValue("Movement Base Value", 8),
+        },
+        [
+            new AttributeAdjustment(Attributes.Any, 1)
+        ],
+        null,
+        null,
+        [
+            new Culture(new Reference(Publication.CoreRules, ""), "Middenrealmer", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Nivese", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Norbards", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Thorwaler", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Tulamydes", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Forest Folk", null),
+            new Culture(new Reference(Publication.CoreRules, ""), "Utulus", null)
+        ],
+        null // TODO: 
     )
 }
 
@@ -284,6 +373,7 @@ const ProfessionSubtypes = {
 }
 
 const Professions = {
+    // Blessed Ones
     BlessedOneOfBoron: new Profession(ProfessionTypes.Blessed, ProfessionSubtypes.BlessedOnesOfTheTwelveGods, "Blessed One of Boron"),
     BlessedOneOfHesinde: new Profession(ProfessionTypes.Blessed, ProfessionSubtypes.BlessedOnesOfTheTwelveGods, "Blessed One of Hesinde"),
     BlessedOneOfPeraine: new Profession(ProfessionTypes.Blessed, ProfessionSubtypes.BlessedOnesOfTheTwelveGods, "Blessed One of Peraine"),
